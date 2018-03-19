@@ -1,0 +1,29 @@
+#执行该docker的时候，本地已经完成了打包
+#控制范畴变大，将配置文件也包括其中
+#外部提供的资源增加到
+FROM gizmotronic/openfire:4.2.2
+
+#默认utf-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+RUN locale-gen en_US.UTF-8
+
+#调整原入口
+RUN mv /sbin/entrypoint.sh /sbin/entrypoint-org.sh
+COPY ./entry.sh /sbin/entrypoint.sh
+RUN chmod +x /sbin/entrypoint.sh
+# 我们编译的plugins
+RUN mkdir /fixed_plugins
+COPY ./plugins/accountCenter/target/accountCenter.jar /fixed_plugins/
+COPY ./plugins/offlinePush/target/offlinePush.jar /fixed_plugins/
+COPY ./plugins/restAPI/target/restAPI.jar /fixed_plugins/
+COPY ./plugins/mucPlugin/target/mucPlugin.jar /fixed_plugins/
+
+#or curl with --output <file> --directory-prefix=
+RUN wget http://www.igniterealtime.org/projects/openfire/plugins/clientControl.jar --directory-prefix=/fixed_plugins/
+RUN wget http://www.igniterealtime.org/projects/openfire/plugins/presence.jar --directory-prefix=/fixed_plugins/
+RUN wget http://www.igniterealtime.org/projects/openfire/plugins/websocket.jar --directory-prefix=/fixed_plugins/
+#javascript:downloadPlugin('http://www.igniterealtime.org/projects/openfire/plugins/clientControl.jar', '1682004675')
+#COPY ./chinese.sh /data/
+#CMD ["/sbin/entry.sh"]
