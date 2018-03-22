@@ -1,13 +1,15 @@
 <%@ page
-	import="java.util.*,
-                org.jivesoftware.openfire.XMPPServer,
-                org.jivesoftware.util.*,org.jivesoftware.openfire.plugin.rest.RESTServicePlugin,
-				org.jivesoftware.openfire.container.Plugin,
-                org.jivesoftware.openfire.container.PluginManager"
-	errorPage="error.jsp"%>
+		import="org.jivesoftware.openfire.XMPPServer,
+				org.jivesoftware.openfire.container.PluginManager,
+				org.jivesoftware.openfire.plugin.rest.RESTServicePlugin,
+				org.jivesoftware.util.ParamUtils,
+				org.jivesoftware.util.StringUtils,
+				java.util.HashMap"
+		errorPage="error.jsp"%>
+<%@ page import="java.util.Map" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>--%>
 
 <%-- Define Administration Bean --%>
 <jsp:useBean id="admin" class="org.jivesoftware.util.WebManager" />
@@ -55,7 +57,7 @@
 			if(is2Reload) {
 				String pluginName  = pluginManager.getName(plugin);
 				String pluginDir = pluginManager.getPluginDirectory(plugin).getName();
-				pluginManager.unloadPlugin(pluginDir);
+//				pluginManager.unloadPlugin(pluginDir);
             
 				// Log the event
 				admin.logEvent("reloaded plugin "+ pluginName, null);

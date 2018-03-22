@@ -1,13 +1,16 @@
 #执行该docker的时候，本地已经完成了打包
 #控制范畴变大，将配置文件也包括其中
 #外部提供的资源增加到
-FROM gizmotronic/openfire:4.2.2
+#FROM gizmotronic/openfire:4.2.2
+FROM registry.cn-hongkong.aliyuncs.com/mingshz/openfire
 
-#默认utf-8
-ENV LANGUAGE=en_US.UTF-8
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
-RUN locale-gen en_US.UTF-8
+##默认utf-8
+#RUN apt-get clean && apt-get update && apt-get install -y locales
+#ENV LANGUAGE=en_US.UTF-8
+#ENV LANG=en_US.UTF-8
+#ENV LC_ALL=en_US.UTF-8
+#RUN locale-gen en_US.UTF-8
+#RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 
 #调整原入口
 RUN mv /sbin/entrypoint.sh /sbin/entrypoint-org.sh

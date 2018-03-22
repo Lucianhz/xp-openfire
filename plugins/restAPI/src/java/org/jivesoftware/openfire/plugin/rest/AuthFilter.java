@@ -1,10 +1,7 @@
 package org.jivesoftware.openfire.plugin.rest;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response.Status;
-
+import com.sun.jersey.spi.container.ContainerRequest;
+import com.sun.jersey.spi.container.ContainerRequestFilter;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.admin.AdminManager;
 import org.jivesoftware.openfire.auth.AuthFactory;
@@ -14,12 +11,15 @@ import org.jivesoftware.openfire.auth.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.jersey.spi.container.ContainerRequest;
-import com.sun.jersey.spi.container.ContainerRequestFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response.Status;
 
 /**
  * The Class AuthFilter.
  */
+@SuppressWarnings("unused")
 public class AuthFilter implements ContainerRequestFilter {
 
 	/** The log. */

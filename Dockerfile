@@ -4,13 +4,14 @@ ADD . /build/
 WORKDIR /build/
 RUN ["mvn","-DskipTests=true","package"]
 
-FROM gizmotronic/openfire:4.2.2
+#FROM gizmotronic/openfire:4.2.2
+FROM registry.cn-hongkong.aliyuncs.com/mingshz/openfire
 
-#默认utf-8
-ENV LANGUAGE=en_US.UTF-8
-ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
-RUN locale-gen en_US.UTF-8
+##默认utf-8
+#ENV LANGUAGE=en_US.UTF-8
+#ENV LANG=en_US.UTF-8
+#ENV LC_ALL=en_US.UTF-8
+#RUN locale-gen en_US.UTF-8
 
 #调整原入口
 RUN mv /sbin/entrypoint.sh /sbin/entrypoint-org.sh

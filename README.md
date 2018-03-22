@@ -8,3 +8,9 @@ restApi 估计改过不少…………
 mucplugin 1
 presence 无配置
 websocket 无配置
+
+# 测试点
+```bash
+curl -v -H "Authorization: N3rw8g4XiqijHwY2" http://localhost:9090/plugins/restapi/v1/users
+```
+

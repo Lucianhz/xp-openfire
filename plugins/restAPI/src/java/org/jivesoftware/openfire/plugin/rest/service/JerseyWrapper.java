@@ -1,22 +1,17 @@
 package org.jivesoftware.openfire.plugin.rest.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import java.lang.ClassNotFoundException;
-import java.lang.Class;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-
+import com.sun.jersey.api.core.PackagesResourceConfig;
+import com.sun.jersey.spi.container.servlet.ServletContainer;
 import org.jivesoftware.admin.AuthCheckFilter;
 import org.jivesoftware.openfire.plugin.rest.exceptions.RESTExceptionMapper;
 import org.jivesoftware.util.JiveGlobals;
 
-import com.sun.jersey.api.core.PackagesResourceConfig;
-import com.sun.jersey.spi.container.servlet.ServletContainer;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The Class JerseyWrapper.
