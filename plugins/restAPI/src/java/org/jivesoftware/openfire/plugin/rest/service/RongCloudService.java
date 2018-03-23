@@ -1,70 +1,22 @@
 package org.jivesoftware.openfire.plugin.rest.service;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.ServletConfig;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
-
-import org.jivesoftware.openfire.SessionManager;
-import org.jivesoftware.openfire.SessionResultFilter;
-import org.jivesoftware.openfire.XMPPServer;
-import org.jivesoftware.openfire.XMPPServerInfo;
-import org.jivesoftware.openfire.plugin.rest.controller.MUCRoomController;
-import org.jivesoftware.openfire.plugin.rest.controller.UserServiceController;
-import org.jivesoftware.openfire.plugin.rest.entity.MUCRoomEntities;
+import com.rong.RongCloud;
+import com.rong.models.TokenResult;
 import org.jivesoftware.openfire.plugin.rest.entity.RongTokenEntity;
-import org.jivesoftware.openfire.plugin.rest.entity.UserEntities;
-import org.jivesoftware.openfire.plugin.rest.entity.UserEntity;
 import org.jivesoftware.openfire.plugin.rest.enums.ErrEnum;
 import org.jivesoftware.openfire.plugin.rest.exceptions.ServiceException;
-import org.jivesoftware.openfire.plugin.rest.manager.MUCRoomManager;
 import org.jivesoftware.openfire.plugin.rest.manager.RongCloudManager;
-import org.jivesoftware.openfire.plugin.rest.manager.UserManager;
-import org.jivesoftware.openfire.plugin.rest.utils.Base64Utils;
-import org.jivesoftware.openfire.plugin.rest.utils.MD5;
 import org.jivesoftware.openfire.plugin.rest.utils.MediaType;
-import org.jivesoftware.openfire.plugin.rest.utils.RSAUtils;
-import org.jivesoftware.openfire.plugin.rest.utils.RandomUtils;
 import org.jivesoftware.openfire.plugin.rest.utils.ResultUtils;
-import org.jivesoftware.openfire.plugin.rest.utils.StringUtils;
-import org.jivesoftware.openfire.session.ClientSession;
-import org.jivesoftware.openfire.user.UserCollection;
-import org.jivesoftware.util.Blowfish;
 import org.jivesoftware.util.JiveGlobals;
-import org.jivesoftware.util.Log;
-import org.jivesoftware.util.WebManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.doowal.offlinepush.manager.MsgPushManager;
-import com.rong.RongCloud;
-import com.rong.models.TokenResult;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
+import javax.annotation.PostConstruct;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 @Path("restapi/v1/rong")
 public class RongCloudService {
