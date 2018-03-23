@@ -183,16 +183,7 @@ public class MessageService {
         typeElement.setText(type);
         msgtype.add(typeElement);
         msgtype.add(timeElement);
-        try {
-            MUCRoom mr = XMPPServer.getInstance().getMultiUserChatManager()
-                    .getMultiUserChatService(roomJid).getChatRoom(roomName);
-            mr.send(message);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.error("send Muc Message fail: " + e.getMessage());
-            return ResultUtils.fail("服务器异常", ErrEnum.ERR_SERVER_ERR.getValue());
-        }
-        return ResultUtils.success(null);
+        return sendMessageToRoom(roomName, roomJid, message);
     }
 
     @POST
@@ -245,13 +236,16 @@ public class MessageService {
         typeElement.setText(type);
         msgtype.add(typeElement);
         msgtype.add(timeElement);
+        return sendMessageToRoom(roomName, roomJid, message);
+    }
+
+    private String sendMessageToRoom(String roomName, JID roomJid, Message message) {
         try {
             MUCRoom mr = XMPPServer.getInstance().getMultiUserChatManager()
                     .getMultiUserChatService(roomJid).getChatRoom(roomName);
             mr.send(message);
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.error("send Muc Message fail: " + e.getMessage());
+            Log.error("send Muc Message fail: ", e);
             return ResultUtils.fail("服务器异常", ErrEnum.ERR_SERVER_ERR.getValue());
         }
         return ResultUtils.success(null);
